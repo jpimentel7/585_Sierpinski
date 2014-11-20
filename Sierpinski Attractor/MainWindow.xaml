@@ -8,15 +8,45 @@
         <Button Content="Start" HorizontalAlignment="Left" Margin="370,520,0,0" VerticalAlignment="Top" Width="80" Height="25" Click="Button_Click"/>
         <RadioButton Content="6" HorizontalAlignment="Left" Margin="305,525,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_1"/>
         <RadioButton Content="4" HorizontalAlignment="Left" Margin="238,525,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_2"/>
-        <RadioButton Content="2" HorizontalAlignment="Left" Margin="178,525,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_3"/>
-        <ComboBox HorizontalAlignment="Left" Margin="25,523,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged">
-            <ComboBoxItem Content="c1" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="c2" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="c2" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="c3" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="c4" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="c5" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="c6" HorizontalAlignment="Left" Width="118"/>
+        <RadioButton Content="2" HorizontalAlignment="Left" Margin="178,525,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_3" />
+        <ComboBox HorizontalAlignment="Left" Margin="25,523,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged" SelectedIndex="0">
+            <ComboBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <Canvas Background="Red" Height="15" Width="15" Margin="0,0,10,0"></Canvas>
+                    <TextBlock Foreground="Red">Red</TextBlock>
+                </StackPanel>
+            </ComboBoxItem>
+            
+            <ComboBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <Canvas Background="Blue" Height="15" Width="15" Margin="0,0,10,0"></Canvas>
+                    <TextBlock Foreground="Blue">Blue</TextBlock>
+                </StackPanel>
+            </ComboBoxItem>
+            
+            <ComboBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <Canvas Background="BlueViolet" Height="15" Width="15" Margin="0,0,10,0"></Canvas>
+                    <TextBlock Foreground="BlueViolet">Blue Violet</TextBlock>
+                </StackPanel>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <Canvas Background="Green" Height="15" Width="15" Margin="0,0,10,0"></Canvas>
+                    <TextBlock Foreground="Green">Green</TextBlock>
+                </StackPanel>
+            </ComboBoxItem>
+
+            <ComboBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <Canvas Background="Orange" Height="15" Width="15" Margin="0,0,10,0"></Canvas>
+                    <TextBlock Foreground="Orange">Orange</TextBlock>
+                </StackPanel>
+            </ComboBoxItem>
+
+
+
+
         </ComboBox>
         <Canvas x:Name="myCanvas" HorizontalAlignment="Left" Height="475" Margin="0,25,0,0" VerticalAlignment="Top" Width="592" Background="AliceBlue" MouseDown="Canvas_MouseDown" MouseMove="myCanvas_MouseMove" MouseUp="myCanvas_MouseUp"  />
     </Grid>

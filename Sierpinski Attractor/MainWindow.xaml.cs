@@ -20,7 +20,7 @@ namespace Sierpinski_Attractor
     /// </summary>
     public partial class MainWindow : Window
     {
-         int size = 0;
+         
          int numberOfControlPoints = 0;
          bool mousePress = false;
         //used to move object
