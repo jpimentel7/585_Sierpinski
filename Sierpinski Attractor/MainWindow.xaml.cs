@@ -20,8 +20,11 @@ namespace Sierpinski_Attractor
     /// </summary>
     public partial class MainWindow : Window
     {
-         
-         int numberOfControlPoints = 0;
+        //holds the value from the radio box
+         int size = 0;
+        //holds the color from the comobo box
+         Brush pointColor = Brushes.Red;
+        // used for the drag feature
          bool mousePress = false;
         //used to move object
          Rectangle rectToBeMoved = null;
@@ -46,7 +49,36 @@ namespace Sierpinski_Attractor
         //combo box
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            //gets the index of the selected value
+            /*
+             * 1. Red
+             * 2. Blue
+             * 3. Blue Violet 
+             * 4. Green 
+             * 5. Orange 
+            */
+            ComboBox comboBox = (ComboBox)sender;
+            int selected = comboBox.SelectedIndex;
+            switch (selected)
+            {
+                case 1:
+                    pointColor = Brushes.Red;
+                    break;
+                case 2:
+                    pointColor = Brushes.Blue;
+                    break;
+                case 3:
+                    pointColor = Brushes.BlueViolet;
+                    break;
+                case 4:
+                    pointColor = Brushes.Green;
+                    break;
+                case 5:
+                    pointColor = Brushes.Orange;
+                    break;
+            }
+            Console.WriteLine("new color was selected ");
+            Console.WriteLine(selected);
         }
         //size 2
         private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
@@ -66,7 +98,7 @@ namespace Sierpinski_Attractor
             //sets the size
             size = 6;
         }
-        //start
+        //start button
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //need to check that we have more then 3 control points selected
@@ -105,7 +137,7 @@ namespace Sierpinski_Attractor
         {
           Rectangle closestRect = findRect(e.GetPosition(myCanvas));
           //checks to see if a rect was found
-          if (numberOfControlPoints > 1 && closestRect != null)
+          if (points.Count > 1 && closestRect != null)
           {
               mousePress = true;
               rectToBeMoved = closestRect;
@@ -113,7 +145,7 @@ namespace Sierpinski_Attractor
           }
           else
           {
-              if (numberOfControlPoints <= 6)
+              if (points.Count <= 6)
               {
 
 
@@ -121,7 +153,7 @@ namespace Sierpinski_Attractor
                   {
                       Width = 15,
                       Height = 15,
-                      Stroke = Brushes.Black,
+                      Stroke = pointColor,
                       StrokeThickness = 2
                   };
                   Point mouseLocation = e.GetPosition(myCanvas);
@@ -132,8 +164,6 @@ namespace Sierpinski_Attractor
                   Canvas.SetLeft(rect, mouseLocation.X);
                   Canvas.SetTop(rect, mouseLocation.Y);
                   myCanvas.Children.Add(rect);
-
-                  numberOfControlPoints++;
               }
           }
         }
