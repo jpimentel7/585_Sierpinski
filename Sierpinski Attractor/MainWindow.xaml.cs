@@ -69,12 +69,36 @@ namespace Sierpinski_Attractor
         //start
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-        }
+            //need to check that we have more then 3 control points selected
+            Random rand = new Random();
+      
+            Point last, next;
+            last = points[rand.Next(points.Count)].point;
+            for (int i = 0; i < 2000; i++)
+            {
+                next = points[rand.Next(points.Count)].point;
+                last = new Point((next.X + last.X) / 2, (next.Y + last.Y) / 2);
+                //adds the new rect
+                Rectangle rect = new Rectangle
+                {
+                    Width = 15,
+                    Height = 15,
+                    Stroke = Brushes.Black,
+                    StrokeThickness = 2
+                };
+                //adds the rect
+                Canvas.SetLeft(rect, last.X);
+                Canvas.SetTop(rect, last.Y);
+                myCanvas.Children.Add(rect);
+                Console.WriteLine("hello");
+            
+                
+            }
+        }   
         //quit
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            myCanvas.Children.Clear();
         }
         //handles clicks on the canvas
         private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
