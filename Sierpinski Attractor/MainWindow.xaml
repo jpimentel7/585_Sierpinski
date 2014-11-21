@@ -3,55 +3,72 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="600" Width="600">
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-        <Menu HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="592"/>
+
+        <Menu Name="menu1" IsMainMenu="True" Height="27" HorizontalAlignment="Left" VerticalAlignment="Top" Width="592">
+            <MenuItem Header="_About" Visibility="Visible" Name="mnuAbout">
+                <MenuItem Header="_Usage" Click="Usage_Click"></MenuItem>
+                <MenuItem Header="_Author" Click="Author_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        
         <Button Content="Stop" HorizontalAlignment="Left" Margin="490,520,0,0" VerticalAlignment="Top" Width="80" Height="25" Click="Clear_Button_Click"/>
-        <Button Content="Start" HorizontalAlignment="Left" Margin="370,520,0,0" VerticalAlignment="Top" Width="80" Height="25" Click="Start_Button_Click"/>
-        <RadioButton Content="6" HorizontalAlignment="Left" Margin="305,525,0,0" VerticalAlignment="Top" Checked="RadioButton_Size_2"/>
-        <RadioButton Content="4" HorizontalAlignment="Left" Margin="238,525,0,0" VerticalAlignment="Top" Checked="RadioButton_Size_4"/>
-        <RadioButton Content="2" HorizontalAlignment="Left" Margin="178,525,0,0" VerticalAlignment="Top" Checked="RadioButton_Size_6" IsChecked="True" />
-        <ComboBox HorizontalAlignment="Left" Margin="25,523,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged" SelectedIndex="0">
+        <Button Content="Start" HorizontalAlignment="Left" Margin="400,520,0,0" VerticalAlignment="Top" Width="80" Height="25" Click="Start_Button_Click"/>
+        
+        <RadioButton Content="6" HorizontalAlignment="Left" Margin="360,525,0,0" VerticalAlignment="Top" Checked="RadioButton_Size_2"/>
+        <RadioButton Content="4" HorizontalAlignment="Left" Margin="330,525,0,0" VerticalAlignment="Top" Checked="RadioButton_Size_4"/>
+        <RadioButton Content="2" HorizontalAlignment="Left" Margin="300,525,0,0" VerticalAlignment="Top" Checked="RadioButton_Size_6" IsChecked="True" />
+
+        <TextBlock HorizontalAlignment="Left" Margin="13,523,0,0" VerticalAlignment="Top"  Text="R" />
+        <ComboBox HorizontalAlignment="Left" Margin="25,523,0,0" VerticalAlignment="Top" Width="50" SelectionChanged="RedComboBox_SelectionChanged" SelectedIndex="0">
             <ComboBoxItem>
-                <StackPanel Orientation="Horizontal">
-                    <Canvas Background="Red" Height="15" Width="15" Margin="0,0,10,0"></Canvas>
-                    <TextBlock Foreground="Red">Red</TextBlock>
-                </StackPanel>
-            </ComboBoxItem>
-            
-            <ComboBoxItem>
-                <StackPanel Orientation="Horizontal">
-                    <Canvas Background="Blue" Height="15" Width="15" Margin="0,0,10,0"></Canvas>
-                    <TextBlock Foreground="Blue">Blue</TextBlock>
-                </StackPanel>
-            </ComboBoxItem>
-            
-            <ComboBoxItem>
-                <StackPanel Orientation="Horizontal">
-                    <Canvas Background="BlueViolet" Height="15" Width="15" Margin="0,0,10,0"></Canvas>
-                    <TextBlock Foreground="BlueViolet">Blue Violet</TextBlock>
-                </StackPanel>
+                <TextBlock>0</TextBlock>
             </ComboBoxItem>
             <ComboBoxItem>
-                <StackPanel Orientation="Horizontal">
-                    <Canvas Background="Green" Height="15" Width="15" Margin="0,0,10,0"></Canvas>
-                    <TextBlock Foreground="Green">Green</TextBlock>
-                </StackPanel>
+                <TextBlock>85</TextBlock>
             </ComboBoxItem>
-
             <ComboBoxItem>
-                <StackPanel Orientation="Horizontal">
-                    <Canvas Background="Orange" Height="15" Width="15" Margin="0,0,10,0"></Canvas>
-                    <TextBlock Foreground="Orange">Orange</TextBlock>
-                </StackPanel>
+                <TextBlock>170</TextBlock>
             </ComboBoxItem>
-
-
-
-
+            <ComboBoxItem>
+                <TextBlock>255</TextBlock>
+            </ComboBoxItem>
         </ComboBox>
+
+        <TextBlock HorizontalAlignment="Left" Margin="90,523,0,0" VerticalAlignment="Top"  Text="G" />
+        <ComboBox  HorizontalAlignment="Left" Margin="102,523,0,0" VerticalAlignment="Top" Width="50" SelectionChanged="GreenComboBox_SelectionChanged" SelectedIndex="0">
+            <ComboBoxItem>
+                <TextBlock>0</TextBlock>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <TextBlock>85</TextBlock>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <TextBlock>170</TextBlock>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <TextBlock>255</TextBlock>
+            </ComboBoxItem>
+        </ComboBox>
+
+        <TextBlock HorizontalAlignment="Left" Margin="170,523,0,0" VerticalAlignment="Top"  Text="B" />
+        <ComboBox  HorizontalAlignment="Left" Margin="182,523,0,0" VerticalAlignment="Top" Width="50" SelectionChanged="BlueComboBox_SelectionChanged" SelectedIndex="0">
+            <ComboBoxItem>
+                <TextBlock>0</TextBlock>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <TextBlock>85</TextBlock>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <TextBlock>170</TextBlock>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <TextBlock>255</TextBlock>
+            </ComboBoxItem> 
+        </ComboBox>
+
+        <Canvas Name="myColor" HorizontalAlignment="Left" Background="Black" Height="20" Width="45" Margin="245,508,0,0"> </Canvas>
+
         <Canvas x:Name="myCanvas" HorizontalAlignment="Left" Height="475" Margin="0,25,0,0" VerticalAlignment="Top" Width="592" Background="AliceBlue" MouseDown="Canvas_MouseDown" MouseMove="myCanvas_MouseMove" MouseUp="myCanvas_MouseUp"  />
     </Grid>
 
-
-    
-    
 </Window>

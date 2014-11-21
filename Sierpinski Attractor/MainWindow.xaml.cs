@@ -1,4 +1,18 @@
-﻿using System;
+﻿/* 
+ * WPF Sierpinski Attractor 
+ * Comp 585
+ * Barnes
+ * 11/23/14
+ * 
+ * Javier Pimentel 
+ * javier.pimentel.791@my.csun.edu
+ * 
+ * Uyen Nguyen
+ * uyen.nguyen.630@my.csun.edu
+ * 
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,8 +36,14 @@ namespace Sierpinski_Attractor
     {
         //holds the value from the radio box
          int size = 0;
-        //holds the color from the comobo box
-         Brush controlPointColor = Brushes.Red;
+        //holds the default color 
+         Brush controlPointColor = Brushes.Black;
+         //holds the red value from the combo box
+         byte redValue = 0;
+         //holds the green value from the combo box
+         byte greenValue = 0;
+         //holds the blue value from the combo box
+         byte blueValue = 0;
         // used for the drag feature
          bool isMousePress = false;
         //used to move object
@@ -47,64 +67,114 @@ namespace Sierpinski_Attractor
              
          }
 
-         List<ControlPoint> points = new List<ControlPoint>(6);
+        List<ControlPoint> points = new List<ControlPoint>(6);
 
         public MainWindow()
         {
             InitializeComponent();
         }
-        //combo box
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+
+        //combo box for red value
+        private void RedComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //gets the index of the selected value
-            /*
-             * 1. Red
-             * 2. Blue
-             * 3. Blue Violet 
-             * 4. Green 
-             * 5. Orange 
-            */
             ComboBox comboBox = (ComboBox)sender;
-            int selected = comboBox.SelectedIndex;
-            switch (selected)
+            int redSelected = comboBox.SelectedIndex;
+            switch (redSelected)
             {
                 case 0:
-                    controlPointColor = Brushes.Red;
+                    redValue = 0;
                     break;
                 case 1:
-                    controlPointColor = Brushes.Blue;
+                    redValue = 85;
                     break;
                 case 2:
-                    controlPointColor = Brushes.BlueViolet;
+                    redValue = 170;
                     break;
                 case 3:
-                    controlPointColor = Brushes.Green;
-                    break;
-                case 4:
-                    controlPointColor = Brushes.Orange;
+                    redValue = 255;
                     break;
             }
-            Console.WriteLine("new color was selected ");
-            Console.WriteLine(selected);
+            Console.WriteLine("red value was selected");
+            Console.WriteLine(redSelected);
         }
+
+        //combo box for green value
+        private void GreenComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            int greenSelected = comboBox.SelectedIndex;
+            switch (greenSelected)
+            {
+                case 0:
+                    greenValue = 0;
+                    break;
+                case 1:
+                    greenValue = 85;
+                    break;
+                case 2:
+                    greenValue = 170;
+                    break;
+                case 3:
+                    greenValue = 255;
+                    break;
+            }
+            Console.WriteLine("green value was selected");
+            Console.WriteLine(greenSelected);
+        }
+
+        //combo box for blue value
+        private void BlueComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox comboBox = (ComboBox)sender;
+            int blueSelected = comboBox.SelectedIndex;
+            switch (blueSelected)
+            {
+                case 0:
+                    blueValue = 0;
+                    break;
+                case 1:
+                    blueValue = 85;
+                    break;
+                case 2:
+                    blueValue = 170;
+                    break;
+                case 3:
+                    blueValue = 255;
+                    break;
+            }
+            Console.WriteLine("blue value was selected");
+            Console.WriteLine(blueSelected);
+        }
+
+        // Create a color using the FromRgb static method
+        private Color Control_Point_Color()
+        {
+            Color myRgbColor = new Color();
+            myRgbColor = Color.FromRgb(redValue, greenValue, blueValue);
+            return myRgbColor;
+        }
+
         //size 2
         private void RadioButton_Size_2(object sender, RoutedEventArgs e)
         {
             //sets the size
             size = 6;
         }
+
         //size 4
         private void RadioButton_Size_4(object sender, RoutedEventArgs e)
         {
             //sets the size
             size = 4;
         }
+
         //side 6
         private void RadioButton_Size_6(object sender, RoutedEventArgs e)
         {
             //sets the size
             size = 2;
         }
+
         //start button
         private void Start_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -137,6 +207,7 @@ namespace Sierpinski_Attractor
             // used to determine if the canvas has been painted on
             isCanvasPainted = true;
         }   
+
         //clear button
         private void Clear_Button_Click(object sender, RoutedEventArgs e)
         {
@@ -145,6 +216,7 @@ namespace Sierpinski_Attractor
             // used to determine if the canvas has been painted on
             isCanvasPainted = false;
         }
+
         //handles clicks on the canvas
         private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -232,11 +304,31 @@ namespace Sierpinski_Attractor
                     Canvas.SetTop(rect, tempCP.point.Y);
                     myCanvas.Children.Add(rect);
                 }
-                //adds 2,00 rects
+                //adds 2000 rects
                 Start_Button_Click(null, null);
             }
-            
         }
-    }
 
+        //Usage menu item click handler
+        private void Usage_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult usage = MessageBox.Show(
+                "User can select RGB values from the three combo boxes to create \n"
+                + "a color and size from one of the three radio buttons for the control \n"
+                + "points.  User must click on canvas to create control points.  Clicking \n"
+                + "the start button will create the Sierpinski Triangle.  Clicking the stop \n"
+                + "button will clear the canvas.\n", "Usage");
+        }
+
+        //Author menu item click handler
+        private void Author_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult author = MessageBox.Show(
+                "Javier Pimentel\njavier.pimentel.791@my.csun.edu\n\n"
+                + "Uyen Nguyen\nuyen.nguyen.630@my.csun.edu\n\n"
+                + "California State University, Northridge\nComp 585 Barnes", 
+                "Author");
+        }
+
+    }
 }
