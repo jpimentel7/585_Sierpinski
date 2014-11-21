@@ -10,10 +10,10 @@
                 <MenuItem Header="_Author" Click="Author_Click"></MenuItem>
             </MenuItem>
         </Menu>
-        
+
         <Button Content="Stop" HorizontalAlignment="Left" Margin="490,520,0,0" VerticalAlignment="Top" Width="80" Height="25" Click="Clear_Button_Click"/>
         <Button Content="Start" HorizontalAlignment="Left" Margin="400,520,0,0" VerticalAlignment="Top" Width="80" Height="25" Click="Start_Button_Click"/>
-        
+
         <RadioButton Content="6" HorizontalAlignment="Left" Margin="360,525,0,0" VerticalAlignment="Top" Checked="RadioButton_Size_2"/>
         <RadioButton Content="4" HorizontalAlignment="Left" Margin="330,525,0,0" VerticalAlignment="Top" Checked="RadioButton_Size_4"/>
         <RadioButton Content="2" HorizontalAlignment="Left" Margin="300,525,0,0" VerticalAlignment="Top" Checked="RadioButton_Size_6" IsChecked="True" />
@@ -34,8 +34,8 @@
             </ComboBoxItem>
         </ComboBox>
 
-        <TextBlock HorizontalAlignment="Left" Margin="90,523,0,0" VerticalAlignment="Top"  Text="G" />
-        <ComboBox  HorizontalAlignment="Left" Margin="102,523,0,0" VerticalAlignment="Top" Width="50" SelectionChanged="GreenComboBox_SelectionChanged" SelectedIndex="0">
+        <TextBlock HorizontalAlignment="Left" Margin="80,523,0,0" VerticalAlignment="Top"  Text="G" />
+        <ComboBox  HorizontalAlignment="Left" Margin="93,523,0,0" VerticalAlignment="Top" Width="50" SelectionChanged="GreenComboBox_SelectionChanged" SelectedIndex="0">
             <ComboBoxItem>
                 <TextBlock>0</TextBlock>
             </ComboBoxItem>
@@ -50,8 +50,8 @@
             </ComboBoxItem>
         </ComboBox>
 
-        <TextBlock HorizontalAlignment="Left" Margin="170,523,0,0" VerticalAlignment="Top"  Text="B" />
-        <ComboBox  HorizontalAlignment="Left" Margin="182,523,0,0" VerticalAlignment="Top" Width="50" SelectionChanged="BlueComboBox_SelectionChanged" SelectedIndex="0">
+        <TextBlock HorizontalAlignment="Left" Margin="148,525,0,0" VerticalAlignment="Top"  Text="B" />
+        <ComboBox  HorizontalAlignment="Left" Margin="160,523,0,0" VerticalAlignment="Top" Width="50" SelectionChanged="BlueComboBox_SelectionChanged" SelectedIndex="0">
             <ComboBoxItem>
                 <TextBlock>0</TextBlock>
             </ComboBoxItem>
@@ -63,10 +63,11 @@
             </ComboBoxItem>
             <ComboBoxItem>
                 <TextBlock>255</TextBlock>
-            </ComboBoxItem> 
+            </ComboBoxItem>
         </ComboBox>
 
-        <Canvas Name="myColor" HorizontalAlignment="Left" Background="Black" Height="20" Width="45" Margin="245,508,0,0"> </Canvas>
+
+        <Button x:Name="colorButton" Content="Get color" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="222,520,0,0" Width="68" Height="25" Click="Get_Color_Click"/>
 
         <Canvas x:Name="myCanvas" HorizontalAlignment="Left" Height="475" Margin="0,25,0,0" VerticalAlignment="Top" Width="592" Background="AliceBlue" MouseDown="Canvas_MouseDown" MouseMove="myCanvas_MouseMove" MouseUp="myCanvas_MouseUp"  />
     </Grid>

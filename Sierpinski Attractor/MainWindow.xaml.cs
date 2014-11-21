@@ -58,7 +58,7 @@ namespace Sierpinski_Attractor
              public Point point;
              public Brush color;
 
-             public ControlPoint(Rectangle currentRectangle,Point currentPoint, Brush currentColor)
+             public ControlPoint(Rectangle currentRectangle, Point currentPoint, Brush currentColor)
              {
                  this.rect = currentRectangle;
                  this.point = currentPoint;
@@ -328,6 +328,13 @@ namespace Sierpinski_Attractor
                 + "Uyen Nguyen\nuyen.nguyen.630@my.csun.edu\n\n"
                 + "California State University, Northridge\nComp 585 Barnes", 
                 "Author");
+        }
+
+        //change button color to selected rgb value
+        private void Get_Color_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = ((Button)sender);
+            //button.Background = Control_Point_Color();
         }
 
     }
