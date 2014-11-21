@@ -68,19 +68,19 @@ namespace Sierpinski_Attractor
             int selected = comboBox.SelectedIndex;
             switch (selected)
             {
-                case 1:
+                case 0:
                     pointColor = Brushes.Red;
                     break;
-                case 2:
+                case 1:
                     pointColor = Brushes.Blue;
                     break;
-                case 3:
+                case 2:
                     pointColor = Brushes.BlueViolet;
                     break;
-                case 4:
+                case 3:
                     pointColor = Brushes.Green;
                     break;
-                case 5:
+                case 4:
                     pointColor = Brushes.Orange;
                     break;
             }
