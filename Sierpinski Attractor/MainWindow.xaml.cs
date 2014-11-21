@@ -122,11 +122,13 @@ namespace Sierpinski_Attractor
                 //adds the new rect
                 Rectangle rect = new Rectangle
                 {
+                    //size is controled by the radio buttons 
                     Width = size,
                     Height = size,
-                    Fill = temp.color
+                    //get the color from the random control point
+                    Fill = temp.color 
                 };
-                //adds the rect
+                //adds the rect to the canvas
                 Canvas.SetLeft(rect, last.X);
                 Canvas.SetTop(rect, last.Y);
                 myCanvas.Children.Add(rect);
@@ -140,6 +142,7 @@ namespace Sierpinski_Attractor
         {
             myCanvas.Children.Clear();
             points.Clear();
+            // used to determine if the canvas has been painted on
             isCanvasPainted = false;
         }
         //handles clicks on the canvas
@@ -152,10 +155,12 @@ namespace Sierpinski_Attractor
                     Math.Pow((e.GetPosition(myCanvas).Y - temp.point.Y), 2));
                 if (distances < 25)
                 {
+                    //save the closes rect a variable for later
                     rectToBeMoved = temp;
                     movingRect = true;
                 }
             }
+            //remove the control point from the array list as it will be updated later
             if(movingRect == true)
              points.Remove(rectToBeMoved);
 
@@ -163,28 +168,26 @@ namespace Sierpinski_Attractor
           if (points.Count > 1 && movingRect != false)
           {
               isMousePress = true;
-              
               Console.WriteLine("get ready to move"); 
           }
           else
           {
+              //If no Control Point is found we must be adding one
               if (points.Count <= 6)
               {
-
-
                   Rectangle rect = new Rectangle
                   {
                       Width = 10,
                       Height = 10,
                       Fill = controlPointColor
                   };
-                  Point mouseLocation = e.GetPosition(myCanvas);
-                  ControlPoint temp = new ControlPoint(rect, mouseLocation,controlPointColor);
+                  
+                  ControlPoint temp = new ControlPoint(rect, e.GetPosition(myCanvas),controlPointColor);
                   //adds the rect to the list 
                   points.Add(temp);
                   //adds the rect to the canvas
-                  Canvas.SetLeft(rect, mouseLocation.X);
-                  Canvas.SetTop(rect, mouseLocation.Y);
+                  Canvas.SetLeft(rect, e.GetPosition(myCanvas).X);
+                  Canvas.SetTop(rect, e.GetPosition(myCanvas).Y);
                   myCanvas.Children.Add(rect);
               }
           }
@@ -194,9 +197,9 @@ namespace Sierpinski_Attractor
         {
             if (movingRect != false && isMousePress)
             {
+                //updates the postition of the rect on the canvas
                 rectToBeMoved.rect.SetValue(Canvas.LeftProperty, e.GetPosition(myCanvas).X);
                 rectToBeMoved.rect.SetValue(Canvas.TopProperty, e.GetPosition(myCanvas).Y);
-               
                 Console.WriteLine("im moving");  
             }
         }
@@ -211,11 +214,11 @@ namespace Sierpinski_Attractor
             {
                 //clears the canvas
                 myCanvas.Children.Clear();
-                //readds the point
+                //readds the point we removed with the X,Y values
                 Point tempPoint = new Point(Canvas.GetLeft(rectToBeMoved.rect),Canvas.GetTop(rectToBeMoved.rect));
                 ControlPoint temp = new ControlPoint(rectToBeMoved.rect, tempPoint, rectToBeMoved.color);
                 points.Add(temp);
-                //readds the points
+                //readds all the points to the canvas
                 foreach (ControlPoint tempCP in points)
                 {
                     Rectangle rect = new Rectangle
@@ -224,11 +227,12 @@ namespace Sierpinski_Attractor
                         Height = 10,
                         Fill = temp.color
                     };
-                   
+                    //ads the rects to the canvas
                     Canvas.SetLeft(rect, tempCP.point.X);
                     Canvas.SetTop(rect, tempCP.point.Y);
                     myCanvas.Children.Add(rect);
                 }
+                //adds 2,00 rects
                 Start_Button_Click(null, null);
             }
             
