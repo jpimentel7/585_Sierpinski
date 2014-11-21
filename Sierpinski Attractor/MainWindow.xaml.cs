@@ -23,14 +23,14 @@ namespace Sierpinski_Attractor
         //holds the value from the radio box
          int size = 0;
         //holds the color from the comobo box
-         Brush pointColor = Brushes.Red;
+         Brush controlPointColor = Brushes.Red;
         // used for the drag feature
-         bool mousePress = false;
+         bool isMousePress = false;
         //used to move object
          ControlPoint rectToBeMoved;
-         bool foundRec = false;
+         bool movingRect = false;
         //tracks when canvas has been painted on
-         bool painted = false;
+         bool isCanvasPainted = false;
 
          struct ControlPoint
          {
@@ -69,19 +69,19 @@ namespace Sierpinski_Attractor
             switch (selected)
             {
                 case 0:
-                    pointColor = Brushes.Red;
+                    controlPointColor = Brushes.Red;
                     break;
                 case 1:
-                    pointColor = Brushes.Blue;
+                    controlPointColor = Brushes.Blue;
                     break;
                 case 2:
-                    pointColor = Brushes.BlueViolet;
+                    controlPointColor = Brushes.BlueViolet;
                     break;
                 case 3:
-                    pointColor = Brushes.Green;
+                    controlPointColor = Brushes.Green;
                     break;
                 case 4:
-                    pointColor = Brushes.Orange;
+                    controlPointColor = Brushes.Orange;
                     break;
             }
             Console.WriteLine("new color was selected ");
@@ -133,14 +133,14 @@ namespace Sierpinski_Attractor
                 Console.WriteLine("hello");
             }
             // used to determine if the canvas has been painted on
-            painted = true;
+            isCanvasPainted = true;
         }   
         //clear button
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             myCanvas.Children.Clear();
             points.Clear();
-            painted = false;
+            isCanvasPainted = false;
         }
         //handles clicks on the canvas
         private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
@@ -153,16 +153,16 @@ namespace Sierpinski_Attractor
                 if (distances < 25)
                 {
                     rectToBeMoved = temp;
-                    foundRec = true;
+                    movingRect = true;
                 }
             }
-            if(foundRec == true)
+            if(movingRect == true)
              points.Remove(rectToBeMoved);
 
           //checks to see if a rect was found
-          if (points.Count > 1 && foundRec != false)
+          if (points.Count > 1 && movingRect != false)
           {
-              mousePress = true;
+              isMousePress = true;
               
               Console.WriteLine("get ready to move"); 
           }
@@ -176,10 +176,10 @@ namespace Sierpinski_Attractor
                   {
                       Width = 10,
                       Height = 10,
-                      Fill = pointColor
+                      Fill = controlPointColor
                   };
                   Point mouseLocation = e.GetPosition(myCanvas);
-                  ControlPoint temp = new ControlPoint(rect, mouseLocation,pointColor);
+                  ControlPoint temp = new ControlPoint(rect, mouseLocation,controlPointColor);
                   //adds the rect to the list 
                   points.Add(temp);
                   //adds the rect to the canvas
@@ -192,7 +192,7 @@ namespace Sierpinski_Attractor
         
         private void myCanvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (foundRec != false && mousePress)
+            if (movingRect != false && isMousePress)
             {
                 rectToBeMoved.rect.SetValue(Canvas.LeftProperty, e.GetPosition(myCanvas).X);
                 rectToBeMoved.rect.SetValue(Canvas.TopProperty, e.GetPosition(myCanvas).Y);
@@ -203,11 +203,11 @@ namespace Sierpinski_Attractor
 
         private void myCanvas_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            mousePress = false;
-            foundRec = false;
+            isMousePress = false;
+            movingRect = false;
             Console.WriteLine("hey dont move"); 
             //checks if we have to redraw
-            if (painted == true)
+            if (isCanvasPainted == true)
             {
                 //clears the canvas
                 myCanvas.Children.Clear();
