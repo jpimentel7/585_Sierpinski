@@ -27,17 +27,24 @@ namespace Sierpinski_Attractor
         // used for the drag feature
          bool mousePress = false;
         //used to move object
-         Rectangle rectToBeMoved = null;
+         ControlPoint rectToBeMoved;
+         bool foundRec = false;
+        //tracks when canvas has been painted on
+         bool painted = false;
 
          struct ControlPoint
          {
              public Rectangle rect;
              public Point point;
-             public ControlPoint(Rectangle currentRectangle,Point currentPoint)
+             public Brush color;
+
+             public ControlPoint(Rectangle currentRectangle,Point currentPoint, Brush currentColor)
              {
                  this.rect = currentRectangle;
                  this.point = currentPoint;
+                 this.color = currentColor;
              }
+             
          }
 
          List<ControlPoint> points = new List<ControlPoint>(6);
@@ -103,44 +110,56 @@ namespace Sierpinski_Attractor
         {
             //need to check that we have more then 3 control points selected
             Random rand = new Random();
-      
+            ControlPoint temp;
             Point last, next;
             last = points[rand.Next(points.Count)].point;
             for (int i = 0; i < 2000; i++)
             {
-                next = points[rand.Next(points.Count)].point;
+                //random control point
+                temp = points[rand.Next(points.Count)];
+                next = temp.point;
                 last = new Point((next.X + last.X) / 2, (next.Y + last.Y) / 2);
                 //adds the new rect
                 Rectangle rect = new Rectangle
                 {
-                    Width = 15,
-                    Height = 15,
-                    Stroke = Brushes.Black,
-                    StrokeThickness = 2
+                    Width = size,
+                    Height = size,
+                    Fill = temp.color
                 };
                 //adds the rect
                 Canvas.SetLeft(rect, last.X);
                 Canvas.SetTop(rect, last.Y);
                 myCanvas.Children.Add(rect);
                 Console.WriteLine("hello");
-            
-                
             }
+            // used to determine if the canvas has been painted on
+            painted = true;
         }   
-        //quit
+        //clear button
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             myCanvas.Children.Clear();
+            points.Clear();
+            painted = false;
         }
         //handles clicks on the canvas
         private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
-          Rectangle closestRect = findRect(e.GetPosition(myCanvas));
+            foreach (ControlPoint temp in points)
+            {
+                //uses the distances formula to find the closest rectangle
+                int distances = (int)Math.Sqrt(Math.Pow((e.GetPosition(myCanvas).X - temp.point.X), 2) +
+                    Math.Pow((e.GetPosition(myCanvas).Y - temp.point.Y), 2));
+                if (distances < 25)
+                {
+                    rectToBeMoved = temp;
+                    foundRec = true;
+                }
+            }
           //checks to see if a rect was found
-          if (points.Count > 1 && closestRect != null)
+          if (points.Count > 1 && foundRec != false)
           {
               mousePress = true;
-              rectToBeMoved = closestRect;
               Console.WriteLine("get ready to move"); 
           }
           else
@@ -151,13 +170,12 @@ namespace Sierpinski_Attractor
 
                   Rectangle rect = new Rectangle
                   {
-                      Width = 15,
-                      Height = 15,
-                      Stroke = pointColor,
-                      StrokeThickness = 2
+                      Width = 10,
+                      Height = 10,
+                      Fill = pointColor
                   };
                   Point mouseLocation = e.GetPosition(myCanvas);
-                  ControlPoint temp = new ControlPoint(rect, mouseLocation);
+                  ControlPoint temp = new ControlPoint(rect, mouseLocation,pointColor);
                   //adds the rect to the list 
                   points.Add(temp);
 
@@ -178,16 +196,25 @@ namespace Sierpinski_Attractor
                 if (distances < 25)
                     return temp.rect;
             }
-            
+
             return null;
         }
 
         private void myCanvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (rectToBeMoved != null && mousePress)
+            if (foundRec != false && mousePress)
             {
-                rectToBeMoved.SetValue(Canvas.LeftProperty, e.GetPosition(myCanvas).X);
-                rectToBeMoved.SetValue(Canvas.TopProperty, e.GetPosition(myCanvas).Y);
+                rectToBeMoved.rect.SetValue(Canvas.LeftProperty, e.GetPosition(myCanvas).X);
+                rectToBeMoved.rect.SetValue(Canvas.TopProperty, e.GetPosition(myCanvas).Y);
+                int i;
+                for (i = 0; i < points.Count();i++ )
+                {
+                    if (points[i].Equals(rectToBeMoved))
+                    {
+                        break;
+                    }
+                }
+                points[i].point = new Point(e.GetPosition(myCanvas).X, e.GetPosition(myCanvas).Y);
                 Console.WriteLine("im moving");  
             }
         }
@@ -195,8 +222,30 @@ namespace Sierpinski_Attractor
         private void myCanvas_MouseUp(object sender, MouseButtonEventArgs e)
         {
             mousePress = false;
-            rectToBeMoved = null;
+            foundRec = false;
             Console.WriteLine("hey dont move"); 
+            //checks if we have to redraw
+            if (painted == true)
+            {
+                //clears the canvas
+                myCanvas.Children.Clear();
+                //readds the points
+                foreach (ControlPoint temp in points)
+                {
+                    Rectangle rect = new Rectangle
+                    {
+                        Width = 10,
+                        Height = 10,
+                        Fill = temp.color
+                    };
+                   
+                    Canvas.SetLeft(rect, temp.point.X);
+                    Canvas.SetTop(rect, temp.point.Y);
+                    myCanvas.Children.Add(rect);
+                }
+                //Button_Click(null, null);
+            }
+            
         }
     }
 
