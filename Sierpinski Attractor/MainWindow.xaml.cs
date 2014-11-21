@@ -88,25 +88,25 @@ namespace Sierpinski_Attractor
             Console.WriteLine(selected);
         }
         //size 2
-        private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
+        private void RadioButton_Size_2(object sender, RoutedEventArgs e)
         {
             //sets the size
             size = 6;
         }
         //size 4
-        private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
+        private void RadioButton_Size_4(object sender, RoutedEventArgs e)
         {
             //sets the size
             size = 4;
         }
         //side 6
-        private void RadioButton_Checked_3(object sender, RoutedEventArgs e)
+        private void RadioButton_Size_6(object sender, RoutedEventArgs e)
         {
             //sets the size
             size = 2;
         }
         //start button
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Start_Button_Click(object sender, RoutedEventArgs e)
         {
             //need to check that we have more then 3 control points selected
             Random rand = new Random();
@@ -136,7 +136,7 @@ namespace Sierpinski_Attractor
             isCanvasPainted = true;
         }   
         //clear button
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Clear_Button_Click(object sender, RoutedEventArgs e)
         {
             myCanvas.Children.Clear();
             points.Clear();
@@ -229,7 +229,7 @@ namespace Sierpinski_Attractor
                     Canvas.SetTop(rect, tempCP.point.Y);
                     myCanvas.Children.Add(rect);
                 }
-                Button_Click(null, null);
+                Start_Button_Click(null, null);
             }
             
         }
