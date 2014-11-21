@@ -91,7 +91,7 @@ namespace Sierpinski_Attractor
         private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
         {
             //sets the size
-            size = 2;
+            size = 6;
         }
         //size 4
         private void RadioButton_Checked_2(object sender, RoutedEventArgs e)
@@ -103,7 +103,7 @@ namespace Sierpinski_Attractor
         private void RadioButton_Checked_3(object sender, RoutedEventArgs e)
         {
             //sets the size
-            size = 6;
+            size = 2;
         }
         //start button
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -156,10 +156,14 @@ namespace Sierpinski_Attractor
                     foundRec = true;
                 }
             }
+            if(foundRec == true)
+             points.Remove(rectToBeMoved);
+
           //checks to see if a rect was found
           if (points.Count > 1 && foundRec != false)
           {
               mousePress = true;
+              
               Console.WriteLine("get ready to move"); 
           }
           else
@@ -178,43 +182,21 @@ namespace Sierpinski_Attractor
                   ControlPoint temp = new ControlPoint(rect, mouseLocation,pointColor);
                   //adds the rect to the list 
                   points.Add(temp);
-
+                  //adds the rect to the canvas
                   Canvas.SetLeft(rect, mouseLocation.X);
                   Canvas.SetTop(rect, mouseLocation.Y);
                   myCanvas.Children.Add(rect);
               }
           }
         }
-        private Rectangle findRect(Point mouseLocation)
-        {
-               
-            foreach (ControlPoint temp in points)
-            {
-                //uses the distances formula to find the closest rectangle
-                int distances = (int)Math.Sqrt(Math.Pow((mouseLocation.X - temp.point.X), 2) + 
-                    Math.Pow((mouseLocation.Y - temp.point.Y), 2));
-                if (distances < 25)
-                    return temp.rect;
-            }
-
-            return null;
-        }
-
+        
         private void myCanvas_MouseMove(object sender, MouseEventArgs e)
         {
             if (foundRec != false && mousePress)
             {
                 rectToBeMoved.rect.SetValue(Canvas.LeftProperty, e.GetPosition(myCanvas).X);
                 rectToBeMoved.rect.SetValue(Canvas.TopProperty, e.GetPosition(myCanvas).Y);
-                int i;
-                for (i = 0; i < points.Count();i++ )
-                {
-                    if (points[i].Equals(rectToBeMoved))
-                    {
-                        break;
-                    }
-                }
-                points[i].point = new Point(e.GetPosition(myCanvas).X, e.GetPosition(myCanvas).Y);
+               
                 Console.WriteLine("im moving");  
             }
         }
@@ -229,8 +211,12 @@ namespace Sierpinski_Attractor
             {
                 //clears the canvas
                 myCanvas.Children.Clear();
+                //readds the point
+                Point tempPoint = new Point(Canvas.GetLeft(rectToBeMoved.rect),Canvas.GetTop(rectToBeMoved.rect));
+                ControlPoint temp = new ControlPoint(rectToBeMoved.rect, tempPoint, rectToBeMoved.color);
+                points.Add(temp);
                 //readds the points
-                foreach (ControlPoint temp in points)
+                foreach (ControlPoint tempCP in points)
                 {
                     Rectangle rect = new Rectangle
                     {
@@ -239,18 +225,14 @@ namespace Sierpinski_Attractor
                         Fill = temp.color
                     };
                    
-                    Canvas.SetLeft(rect, temp.point.X);
-                    Canvas.SetTop(rect, temp.point.Y);
+                    Canvas.SetLeft(rect, tempCP.point.X);
+                    Canvas.SetTop(rect, tempCP.point.Y);
                     myCanvas.Children.Add(rect);
                 }
-                //Button_Click(null, null);
+                Button_Click(null, null);
             }
             
         }
     }
-
-
-
-
 
 }
