@@ -68,7 +68,7 @@
             </StackPanel>
 
             <StackPanel Width="160" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <TextBlock HorizontalAlignment="Center">Size</TextBlock>
+                <TextBlock HorizontalAlignment="Center" Margin="2">Size</TextBlock>
                 <RadioButton Content="2" HorizontalAlignment="Center" Checked="RadioButton_Size_2" Margin="3" IsChecked="True"/>
                 <RadioButton Content="4" HorizontalAlignment="Center" Checked="RadioButton_Size_4" Margin="3"/>
                 <RadioButton Content="6" HorizontalAlignment="Center" Checked="RadioButton_Size_6"/>
