@@ -93,7 +93,7 @@ namespace Sierpinski_Attractor
                     redValue = 255;
                     break;
             }
-            Console.WriteLine("red value was selected: " + redValue);
+            Console.WriteLine("Red value was selected: " + redValue);
         }
 
         //combo box for green value
@@ -116,7 +116,7 @@ namespace Sierpinski_Attractor
                     greenValue = 255;
                     break;
             }
-            Console.WriteLine("green value was selected " + greenValue);
+            Console.WriteLine("Green value was selected: " + greenValue);
         }
 
         //combo box for blue value
@@ -139,7 +139,7 @@ namespace Sierpinski_Attractor
                     blueValue = 255;
                     break;
             }
-            Console.WriteLine("blue value was selected " + blueValue);
+            Console.WriteLine("Blue value was selected: " + blueValue);
         }
 
         //size 2
@@ -266,7 +266,7 @@ namespace Sierpinski_Attractor
         private void myCanvas_MouseUp(object sender, MouseButtonEventArgs e)
         {
             isMousePress = false;
-            
+
             //Console.WriteLine("hey dont move"); 
             //readds the point that was moved into the points arrray list
             if (movingRect == true)
@@ -275,29 +275,30 @@ namespace Sierpinski_Attractor
                 Point tempPoint = new Point(Canvas.GetLeft(rectToBeMoved.rect), Canvas.GetTop(rectToBeMoved.rect));
                 ControlPoint temp = new ControlPoint(rectToBeMoved.rect, tempPoint, rectToBeMoved.color);
                 points.Add(temp);
-            movingRect = false;
-            Console.WriteLine("hey dont move"); 
-            //checks if we have to redraw
-            if (isCanvasPainted == true)
-            {
-                //clears the canvas
-                myCanvas.Children.Clear();
-                //readds all the points to the canvas
-                foreach (ControlPoint tempCP in points)
+                movingRect = false;
+                Console.WriteLine("Hey, don't move");
+                //checks if we have to redraw
+                if (isCanvasPainted == true)
                 {
-                    Rectangle rect = new Rectangle
+                    //clears the canvas
+                    myCanvas.Children.Clear();
+                    //readds all the points to the canvas
+                    foreach (ControlPoint tempCP in points)
                     {
-                        Width = 10,
-                        Height = 10,
-                        Fill = tempCP.color
-                    };
-                    //adds the rects to the canvas
-                    Canvas.SetLeft(rect, tempCP.point.X);
-                    Canvas.SetTop(rect, tempCP.point.Y);
-                    myCanvas.Children.Add(rect);
+                        Rectangle rect = new Rectangle
+                        {
+                            Width = 10,
+                            Height = 10,
+                            Fill = tempCP.color
+                        };
+                        //adds the rects to the canvas
+                        Canvas.SetLeft(rect, tempCP.point.X);
+                        Canvas.SetTop(rect, tempCP.point.Y);
+                        myCanvas.Children.Add(rect);
+                    }
+                    //adds 2000 rects
+                    Start_Button_Click(null, null);
                 }
-                //adds 2000 rects
-                Start_Button_Click(null, null);
             }
         }
 
