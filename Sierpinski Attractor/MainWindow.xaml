@@ -68,9 +68,9 @@
 
             <StackPanel Width="160" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock HorizontalAlignment="Center" Margin="2">Size</TextBlock>
-                <RadioButton x:Name="defaultRadioBtn" Content="2" HorizontalAlignment="Center" Checked="RadioButton_Size_2" Margin="3" IsChecked="True"/>
-                <RadioButton Content="4" HorizontalAlignment="Center" Checked="RadioButton_Size_4" Margin="3"/>
-                <RadioButton Content="6" HorizontalAlignment="Center" Checked="RadioButton_Size_6"/>
+                <RadioButton x:Name="defaultRadioBtn" Content=" 2" HorizontalAlignment="Center" Checked="RadioButton_Size_2" Margin="3" IsChecked="True"/>
+                <RadioButton Content=" 4" HorizontalAlignment="Center" Checked="RadioButton_Size_4" Margin="3"/>
+                <RadioButton Content=" 6" HorizontalAlignment="Center" Checked="RadioButton_Size_6"/>
             </StackPanel>
 
             <StackPanel Width="145" VerticalAlignment="Center" >
