@@ -4,10 +4,8 @@
         Title="Sierpinski Attractor" Height="680" Width="680" ResizeMode="NoResize">
     <StackPanel Orientation="Vertical" >
         <Menu Name="menu1" IsMainMenu="True" Height="25" Width="680">
-            <MenuItem Header="_About" Visibility="Visible" Name="mnuAbout">
                 <MenuItem Header="_About" Click="About_Click"></MenuItem>
                 <MenuItem Header="_Usage" Click="Usage_Click"></MenuItem>
-            </MenuItem>
         </Menu>
 
         <Canvas x:Name="myCanvas" Height="500" Width="680" Background="AliceBlue" MouseDown="Canvas_MouseDown" MouseMove="myCanvas_MouseMove" MouseUp="myCanvas_MouseUp"/>

@@ -316,7 +316,7 @@ namespace Sierpinski_Attractor
                 "Sierpinski Attractor \n\n"
                 + "Javier Pimentel \njavier.pimentel.791@my.csun.edu\n\n"
                 + "Uyen Nguyen \nuyen.nguyen.630@my.csun.edu\n\n"
-                + "California State University, Northridge \nComp 585 \nBarnes",
+                + "California State University, Northridge \nComp 585 \nBarnes \nFall 14",
                 "About");
         }
 
@@ -324,12 +324,12 @@ namespace Sierpinski_Attractor
         private void Usage_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult usage = MessageBox.Show(
-                "User can select RGB values from the three combo boxes to create\n"
+                "Select color component RGB values from each combo boxes to create\n"
                 + "a color and select size from one of the three radio buttons for the\n"
-                + "control points.  User must click on canvas to create three to six\n"
+                + "control point attributes. Click on the canvas to create three to six\n"
                 + "control points. Clicking the Run button will create a Sierpinski\n"
-                + "Attractor.  Clicking the Clear button will clear the canvas and reset\n"
-                + "to default values.", "Usage");
+                + "Attractor.  Drag a control point to change the shape.  Clicking the\n"
+                + "Clear button will clear the canvas and resetto default values.", "Usage");
         }
 
         //change rectangle color to selected rgb values
