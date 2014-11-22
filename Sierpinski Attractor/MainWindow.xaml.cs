@@ -190,7 +190,6 @@ namespace Sierpinski_Attractor
                 Canvas.SetLeft(rect, last.X);
                 Canvas.SetTop(rect, last.Y);
                 myCanvas.Children.Add(rect);
-               // Console.WriteLine("Hello");
             }
             //used to determine if the canvas has been painted on
             isCanvasPainted = true;
@@ -233,7 +232,6 @@ namespace Sierpinski_Attractor
               //removes the rect so that it can be readded after its moved
               points.Remove(rectToBeMoved);
               isMousePress = true;
-              Console.WriteLine("get ready to move"); 
           }
           else
           {
@@ -255,8 +253,7 @@ namespace Sierpinski_Attractor
                   //adds the rect to the canvas
                   Canvas.SetLeft(rect, e.GetPosition(myCanvas).X);
                   Canvas.SetTop(rect, e.GetPosition(myCanvas).Y);
-                  myCanvas.Children.Add(rect);
-                  Console.WriteLine("new point"+ points.Count); 
+                  myCanvas.Children.Add(rect); 
               }
           }
         }
@@ -268,22 +265,20 @@ namespace Sierpinski_Attractor
                 //updates the postition of the rect on the canvas
                 rectToBeMoved.rect.SetValue(Canvas.LeftProperty, e.GetPosition(myCanvas).X);
                 rectToBeMoved.rect.SetValue(Canvas.TopProperty, e.GetPosition(myCanvas).Y);
-                Console.WriteLine("im moving");  
             }
         }
 
         private void myCanvas_MouseUp(object sender, MouseButtonEventArgs e)
         {
             isMousePress = false;
-            //Console.WriteLine("hey dont move"); 
             //readds the point that was moved into the points arrray list
             if (movingRect == true)
             {
+                movingRect = false;
                 //readds the point we removed with the X,Y values
                 Point tempPoint = new Point(Canvas.GetLeft(rectToBeMoved.rect), Canvas.GetTop(rectToBeMoved.rect));
                 ControlPoint temp = new ControlPoint(rectToBeMoved.rect, tempPoint, rectToBeMoved.color);
-                points.Add(temp);
-                movingRect = false;
+                points.Add(temp);      
             }
             Console.WriteLine("Hey, don't move");
             //checks if we have to redraw
