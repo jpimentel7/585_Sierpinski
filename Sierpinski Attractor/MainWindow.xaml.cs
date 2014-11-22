@@ -310,10 +310,10 @@ namespace Sierpinski_Attractor
         {
             MessageBoxResult usage = MessageBox.Show(
                 "User can select RGB values from the three combo boxes to create\n"
-                + "a color and size from one of the three radio buttons for the control\n"
-                + "points.  User must click on canvas to create at least threecontrol points.\n"
-                + "Clicking the start button will create a Sierpinski Triangle.  Clicking\n"
-                + "the stop button will clear the canvas.\n", "Usage");
+                + "a color and select size from one of the three radio buttons for the\n"
+                + "control points.  User must click on canvas to create at least three\n"
+                + "control points. Clicking the start button will create a Sierpinski\n"
+                + "Triangle.  Clicking the stop button will clear the canvas.\n", "Usage");
         }
 
         //author menu item click handler
@@ -329,8 +329,7 @@ namespace Sierpinski_Attractor
         //change button color to selected rgb value
         private void Get_Color_Click(object sender, RoutedEventArgs e)
         {
-            Button button = ((Button)sender);
-            //button.Background = Control_Point_Color();
+            colorRectangle.Fill = new SolidColorBrush(Color.FromRgb(redValue, greenValue, blueValue));
         }
     }
 }
