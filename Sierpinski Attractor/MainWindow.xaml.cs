@@ -36,8 +36,6 @@ namespace Sierpinski_Attractor
     {
         //holds the value from the radio box
          int size = 0;
-        //holds the value for color 
-         SolidColorBrush controlPointColor = new SolidColorBrush(Color.FromRgb(0, 0, 0));
          //holds the red value from the combo box
          byte redValue = 0;
          //holds the green value from the combo box
@@ -235,6 +233,9 @@ namespace Sierpinski_Attractor
           }
           else
           {
+              //change control point color to rgb value color
+              SolidColorBrush controlPointColor = new SolidColorBrush(Color.FromRgb(redValue, greenValue, blueValue));
+
               //if no Control Point is found we must add one
               if (points.Count <= 5)
               {
@@ -245,8 +246,6 @@ namespace Sierpinski_Attractor
                       Fill = controlPointColor
                   };
                   
-                  //change control point color to rgb value color
-                  controlPointColor.Color = Color.FromRgb(redValue, greenValue, blueValue);
                   ControlPoint temp = new ControlPoint(rect, e.GetPosition(myCanvas), controlPointColor);
                   //adds the rect to the list 
                   points.Add(temp);
