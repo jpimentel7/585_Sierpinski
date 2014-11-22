@@ -190,7 +190,7 @@ namespace Sierpinski_Attractor
                 Canvas.SetLeft(rect, last.X);
                 Canvas.SetTop(rect, last.Y);
                 myCanvas.Children.Add(rect);
-                Console.WriteLine("Hello");
+               // Console.WriteLine("Hello");
             }
             //used to determine if the canvas has been painted on
             isCanvasPainted = true;
