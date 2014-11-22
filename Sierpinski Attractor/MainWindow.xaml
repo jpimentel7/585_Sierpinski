@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Sierpinski_Attractor.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Sierpinski Attractor" Height="680" Width="680" ResizeMode="NoResize">
+        Title="Sierpinski Attractor" Height="680" Width="680" ResizeMode="NoResize" Icon="tri.ico" >
     <StackPanel Orientation="Vertical" >
         <Menu Name="menu1" IsMainMenu="True" Height="25" Width="680">
                 <MenuItem Header="_About" Click="About_Click"></MenuItem>
