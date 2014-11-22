@@ -36,7 +36,7 @@ namespace Sierpinski_Attractor
     {
         //holds the value from the radio box
          int size = 0;
-        //holds the default color 
+        //holds the value for color 
          Brush controlPointColor = Brushes.Black;
          //holds the red value from the combo box
          byte redValue = 0;
@@ -64,7 +64,6 @@ namespace Sierpinski_Attractor
                  this.point = currentPoint;
                  this.color = currentColor;
              }
-             
          }
 
         List<ControlPoint> points = new List<ControlPoint>(6);
@@ -94,8 +93,7 @@ namespace Sierpinski_Attractor
                     redValue = 255;
                     break;
             }
-            Console.WriteLine("red value was selected");
-            Console.WriteLine(redSelected);
+            Console.WriteLine("red value was selected: " + redValue);
         }
 
         //combo box for green value
@@ -118,8 +116,7 @@ namespace Sierpinski_Attractor
                     greenValue = 255;
                     break;
             }
-            Console.WriteLine("green value was selected");
-            Console.WriteLine(greenSelected);
+            Console.WriteLine("green value was selected " + greenValue);
         }
 
         //combo box for blue value
@@ -142,11 +139,10 @@ namespace Sierpinski_Attractor
                     blueValue = 255;
                     break;
             }
-            Console.WriteLine("blue value was selected");
-            Console.WriteLine(blueSelected);
+            Console.WriteLine("blue value was selected " + blueValue);
         }
 
-        // Create a color using the FromRgb static method
+        //create a color using the FromRgb static method
         private Color Control_Point_Color()
         {
             Color myRgbColor = new Color();
@@ -158,7 +154,7 @@ namespace Sierpinski_Attractor
         private void RadioButton_Size_2(object sender, RoutedEventArgs e)
         {
             //sets the size
-            size = 6;
+            size = 2;
         }
 
         //size 4
@@ -168,17 +164,17 @@ namespace Sierpinski_Attractor
             size = 4;
         }
 
-        //side 6
+        //size 6
         private void RadioButton_Size_6(object sender, RoutedEventArgs e)
         {
             //sets the size
-            size = 2;
+            size = 6;
         }
 
         //start button
         private void Start_Button_Click(object sender, RoutedEventArgs e)
         {
-            //need to check that we have more then 3 control points selected
+            //need to check that we have more than 3 control points selected
             Random rand = new Random();
             ControlPoint temp;
             Point last, next;
@@ -192,7 +188,7 @@ namespace Sierpinski_Attractor
                 //adds the new rect
                 Rectangle rect = new Rectangle
                 {
-                    //size is controled by the radio buttons 
+                    //size is controlled by the radio buttons 
                     Width = size,
                     Height = size,
                     //get the color from the random control point
@@ -204,7 +200,7 @@ namespace Sierpinski_Attractor
                 myCanvas.Children.Add(rect);
                 Console.WriteLine("hello");
             }
-            // used to determine if the canvas has been painted on
+            //used to determine if the canvas has been painted on
             isCanvasPainted = true;
         }   
 
@@ -213,7 +209,7 @@ namespace Sierpinski_Attractor
         {
             myCanvas.Children.Clear();
             points.Clear();
-            // used to determine if the canvas has been painted on
+            //used to determine if the canvas has been painted on
             isCanvasPainted = false;
         }
 
@@ -244,8 +240,8 @@ namespace Sierpinski_Attractor
           }
           else
           {
-              //If no Control Point is found we must be adding one
-              if (points.Count <= 6)
+              //if no Control Point is found we must add one
+              if (points.Count <= 5)
               {
                   Rectangle rect = new Rectangle
                   {
@@ -299,7 +295,7 @@ namespace Sierpinski_Attractor
                         Height = 10,
                         Fill = temp.color
                     };
-                    //ads the rects to the canvas
+                    //adds the rects to the canvas
                     Canvas.SetLeft(rect, tempCP.point.X);
                     Canvas.SetTop(rect, tempCP.point.Y);
                     myCanvas.Children.Add(rect);
@@ -309,24 +305,24 @@ namespace Sierpinski_Attractor
             }
         }
 
-        //Usage menu item click handler
+        //usage menu item click handler
         private void Usage_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult usage = MessageBox.Show(
-                "User can select RGB values from the three combo boxes to create \n"
-                + "a color and size from one of the three radio buttons for the control \n"
-                + "points.  User must click on canvas to create control points.  Clicking \n"
-                + "the start button will create the Sierpinski Triangle.  Clicking the stop \n"
-                + "button will clear the canvas.\n", "Usage");
+                "User can select RGB values from the three combo boxes to create\n"
+                + "a color and size from one of the three radio buttons for the control\n"
+                + "points.  User must click on canvas to create at least threecontrol points.\n"
+                + "Clicking the start button will create a Sierpinski Triangle.  Clicking\n"
+                + "the stop button will clear the canvas.\n", "Usage");
         }
 
-        //Author menu item click handler
+        //author menu item click handler
         private void Author_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult author = MessageBox.Show(
-                "Javier Pimentel\njavier.pimentel.791@my.csun.edu\n\n"
-                + "Uyen Nguyen\nuyen.nguyen.630@my.csun.edu\n\n"
-                + "California State University, Northridge\nComp 585 Barnes", 
+                "Javier Pimentel \njavier.pimentel.791@my.csun.edu\n\n"
+                + "Uyen Nguyen \nuyen.nguyen.630@my.csun.edu\n\n"
+                + "California State University, Northridge \nComp 585 \nBarnes", 
                 "Author");
         }
 
@@ -336,6 +332,5 @@ namespace Sierpinski_Attractor
             Button button = ((Button)sender);
             //button.Background = Control_Point_Color();
         }
-
     }
 }
