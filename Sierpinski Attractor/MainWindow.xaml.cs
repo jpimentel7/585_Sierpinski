@@ -198,7 +198,6 @@ namespace Sierpinski_Attractor
                 Canvas.SetLeft(rect, last.X);
                 Canvas.SetTop(rect, last.Y);
                 myCanvas.Children.Add(rect);
-                Console.WriteLine("hello");
             }
             //used to determine if the canvas has been painted on
             isCanvasPainted = true;
@@ -266,26 +265,37 @@ namespace Sierpinski_Attractor
             if (movingRect != false && isMousePress)
             {
                 //updates the postition of the rect on the canvas
+                /*
                 rectToBeMoved.rect.SetValue(Canvas.LeftProperty, e.GetPosition(myCanvas).X);
                 rectToBeMoved.rect.SetValue(Canvas.TopProperty, e.GetPosition(myCanvas).Y);
-                Console.WriteLine("im moving");  
+                 * */
+                Canvas.SetLeft(rectToBeMoved.rect, e.GetPosition(myCanvas).X);
+                Canvas.SetTop(rectToBeMoved.rect, e.GetPosition(myCanvas).Y);
+                //Console.WriteLine("im moving");  
             }
         }
 
         private void myCanvas_MouseUp(object sender, MouseButtonEventArgs e)
         {
             isMousePress = false;
-            movingRect = false;
+            
             Console.WriteLine("hey dont move"); 
+            //readds the point that was moved into the points arrray list
+            if (movingRect == true)
+            {
+                //readds the point we removed with the X,Y values
+                Point tempPoint = new Point(Canvas.GetLeft(rectToBeMoved.rect), Canvas.GetTop(rectToBeMoved.rect));
+                ControlPoint temp = new ControlPoint(rectToBeMoved.rect, tempPoint, rectToBeMoved.color);
+                points.Add(temp);
+                movingRect = false;
+            }
             //checks if we have to redraw
             if (isCanvasPainted == true)
             {
+                Point tempPoint = new Point(Canvas.GetLeft(rectToBeMoved.rect), Canvas.GetTop(rectToBeMoved.rect));
+                ControlPoint temp = new ControlPoint(rectToBeMoved.rect, tempPoint, rectToBeMoved.color);
                 //clears the canvas
                 myCanvas.Children.Clear();
-                //readds the point we removed with the X,Y values
-                Point tempPoint = new Point(Canvas.GetLeft(rectToBeMoved.rect),Canvas.GetTop(rectToBeMoved.rect));
-                ControlPoint temp = new ControlPoint(rectToBeMoved.rect, tempPoint, rectToBeMoved.color);
-                points.Add(temp);
                 //readds all the points to the canvas
                 foreach (ControlPoint tempCP in points)
                 {
