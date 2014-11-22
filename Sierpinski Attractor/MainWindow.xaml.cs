@@ -221,7 +221,7 @@ namespace Sierpinski_Attractor
                     Math.Pow((e.GetPosition(myCanvas).Y - temp.point.Y), 2));
                 if (distances < 25)
                 {
-                    //save the closes rect a variable for later
+                    //save the closest rect variable for later
                     rectToBeMoved = temp;
                     movingRect = true;
                 }
@@ -245,7 +245,8 @@ namespace Sierpinski_Attractor
                       Fill = controlPointColor
                   };
                   
-                  controlPointColor = new SolidColorBrush(Color.FromRgb(redValue, greenValue, blueValue));
+                  //change control point color to rgb value color
+                  controlPointColor.Color = Color.FromRgb(redValue, greenValue, blueValue);
                   ControlPoint temp = new ControlPoint(rect, e.GetPosition(myCanvas), controlPointColor);
                   //adds the rect to the list 
                   points.Add(temp);
