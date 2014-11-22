@@ -203,6 +203,12 @@ namespace Sierpinski_Attractor
             points.Clear();
             //used to determine if the canvas has been painted on
             isCanvasPainted = false;
+            //reset color and size attributes
+            colorRectangle.Fill = Brushes.AliceBlue;
+            defaultRadioBtn.IsChecked = true;
+            redComboBox.SelectedIndex = 0;
+            greenComboBox.SelectedIndex = 0;
+            blueComboBox.SelectedIndex = 0;
         }
 
         //handles clicks on the canvas

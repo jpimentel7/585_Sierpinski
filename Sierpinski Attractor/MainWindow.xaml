@@ -16,7 +16,7 @@
             
             <StackPanel Width="225" Orientation="Vertical" VerticalAlignment="Center" >
                 <TextBlock HorizontalAlignment="Center">Color</TextBlock>
-                <ComboBox Foreground="Red" Margin="1" HorizontalAlignment="Center" Width="80" SelectionChanged="RedComboBox_SelectionChanged" SelectedIndex="0">
+                <ComboBox x:Name="redComboBox" Foreground="Red" Margin="1" HorizontalAlignment="Center" Width="80" SelectionChanged="RedComboBox_SelectionChanged" SelectedIndex="0">
                     <ComboBoxItem >
                         <TextBlock>0</TextBlock>
                     </ComboBoxItem>
@@ -31,7 +31,7 @@
                     </ComboBoxItem>
                 </ComboBox>
 
-                <ComboBox Foreground="Green"  Margin="3" HorizontalAlignment="Center" Width="80" SelectionChanged="GreenComboBox_SelectionChanged" SelectedIndex="0">
+                <ComboBox x:Name="greenComboBox" Foreground="Green" Margin="3" HorizontalAlignment="Center" Width="80" SelectionChanged="GreenComboBox_SelectionChanged" SelectedIndex="0">
                     <ComboBoxItem >
                         <TextBlock>0</TextBlock>
                     </ComboBoxItem>
@@ -46,7 +46,7 @@
                     </ComboBoxItem>
                 </ComboBox>
 
-                <ComboBox Foreground="Blue" HorizontalAlignment="Center" Width="80" SelectionChanged="BlueComboBox_SelectionChanged" SelectedIndex="0">
+                <ComboBox x:Name="blueComboBox" Foreground="Blue" HorizontalAlignment="Center" Width="80" SelectionChanged="BlueComboBox_SelectionChanged" SelectedIndex="0">
                     <ComboBoxItem >
                         <TextBlock>0</TextBlock>
                     </ComboBoxItem>
@@ -69,7 +69,7 @@
 
             <StackPanel Width="160" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <TextBlock HorizontalAlignment="Center" Margin="2">Size</TextBlock>
-                <RadioButton Content="2" HorizontalAlignment="Center" Checked="RadioButton_Size_2" Margin="3" IsChecked="True"/>
+                <RadioButton x:Name="defaultRadioBtn" Content="2" HorizontalAlignment="Center" Checked="RadioButton_Size_2" Margin="3" IsChecked="True"/>
                 <RadioButton Content="4" HorizontalAlignment="Center" Checked="RadioButton_Size_4" Margin="3"/>
                 <RadioButton Content="6" HorizontalAlignment="Center" Checked="RadioButton_Size_6"/>
             </StackPanel>
