@@ -10,8 +10,8 @@
 
         <Canvas x:Name="myCanvas" Height="500" Width="680" Background="AliceBlue" MouseDown="Canvas_MouseDown" MouseMove="myCanvas_MouseMove" MouseUp="myCanvas_MouseUp"/>
       
-        <Border BorderBrush="LightGray" BorderThickness="2" >
-            <StackPanel HorizontalAlignment="Center" Background="PapayaWhip" Width="680" Orientation="Horizontal" VerticalAlignment="Bottom" Height="112">
+        <Border BorderBrush="LightGray" BorderThickness="1" >
+            <StackPanel HorizontalAlignment="Center" Background="PapayaWhip" Width="680" Orientation="Horizontal" VerticalAlignment="Bottom" Height="114">
             
             <StackPanel Width="225" Orientation="Vertical" VerticalAlignment="Center" >
                 <TextBlock HorizontalAlignment="Center">Color</TextBlock>
@@ -63,7 +63,7 @@
             
             <StackPanel Width="110" VerticalAlignment="Center">
                 <Rectangle Stroke="LightGray" StrokeThickness="1" x:Name="colorRectangle" Width="80" Height="45" Fill="AliceBlue" Margin="7" />
-                <Button x:Name="colorButton" Content="Get color" Width="80" Height="25" Click="Get_Color_Click"/>
+                <Button x:Name="colorButton" Content="Show color" Width="80" Height="25" Click="Get_Color_Click"/>
             </StackPanel>
 
             <StackPanel Width="160" VerticalAlignment="Center" HorizontalAlignment="Center">
