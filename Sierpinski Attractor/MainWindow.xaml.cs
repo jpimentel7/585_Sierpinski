@@ -163,8 +163,8 @@ namespace Sierpinski_Attractor
             size = 6;
         }
 
-        //start button
-        private void Start_Button_Click(object sender, RoutedEventArgs e)
+        //run button
+        private void Run_Button_Click(object sender, RoutedEventArgs e)
         {
             //need to check that we have more than 3 control points selected
             Random rand = new Random();
@@ -304,9 +304,20 @@ namespace Sierpinski_Attractor
                         myCanvas.Children.Add(rect);
                     }
                     //adds 2000 rects
-                    Start_Button_Click(null, null);
+                    Run_Button_Click(null, null);
                 }
             }
+        }
+
+        //About menu item click handler
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult author = MessageBox.Show(
+                "Sierpinski Attractor \n\n"
+                + "Javier Pimentel \njavier.pimentel.791@my.csun.edu\n\n"
+                + "Uyen Nguyen \nuyen.nguyen.630@my.csun.edu\n\n"
+                + "California State University, Northridge \nComp 585 \nBarnes",
+                "About");
         }
 
         //usage menu item click handler
@@ -315,19 +326,10 @@ namespace Sierpinski_Attractor
             MessageBoxResult usage = MessageBox.Show(
                 "User can select RGB values from the three combo boxes to create\n"
                 + "a color and select size from one of the three radio buttons for the\n"
-                + "control points.  User must click on canvas to create at least three\n"
-                + "control points. Clicking the start button will create a Sierpinski\n"
-                + "Triangle.  Clicking the stop button will clear the canvas.\n", "Usage");
-        }
-
-        //author menu item click handler
-        private void Author_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBoxResult author = MessageBox.Show(
-                "Javier Pimentel \njavier.pimentel.791@my.csun.edu\n\n"
-                + "Uyen Nguyen \nuyen.nguyen.630@my.csun.edu\n\n"
-                + "California State University, Northridge \nComp 585 \nBarnes", 
-                "Author");
+                + "control points.  User must click on canvas to create three to six\n"
+                + "control points. Clicking the Run button will create a Sierpinski\n"
+                + "Attractor.  Clicking the Clear button will clear the canvas and reset\n"
+                + "to default values.", "Usage");
         }
 
         //change rectangle color to selected rgb values

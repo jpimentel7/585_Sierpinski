@@ -5,8 +5,8 @@
     <StackPanel Orientation="Vertical" >
         <Menu Name="menu1" IsMainMenu="True" Height="25" Width="680">
             <MenuItem Header="_About" Visibility="Visible" Name="mnuAbout">
+                <MenuItem Header="_About" Click="About_Click"></MenuItem>
                 <MenuItem Header="_Usage" Click="Usage_Click"></MenuItem>
-                <MenuItem Header="_Author" Click="Author_Click"></MenuItem>
             </MenuItem>
         </Menu>
 
@@ -75,8 +75,8 @@
             </StackPanel>
 
             <StackPanel Width="145" VerticalAlignment="Center" >
-                <Button Content="Start" HorizontalAlignment="Center"  Width="80" Height="25" Margin="10" Click="Start_Button_Click"/>
-                <Button Content="Stop" HorizontalAlignment="Center" Width="80" Height="25" Click="Clear_Button_Click"/>
+                <Button Content="Run" HorizontalAlignment="Center"  Width="80" Height="25" Margin="10" Click="Run_Button_Click"/>
+                <Button Content="Clear" HorizontalAlignment="Center" Width="80" Height="25" Click="Clear_Button_Click"/>
             </StackPanel>
         </StackPanel>
     </StackPanel>
