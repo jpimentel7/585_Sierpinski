@@ -220,20 +220,17 @@ namespace Sierpinski_Attractor
                     movingRect = true;
                 }
             }
-            //remove the control point from the array list as it will be updated later
-            if(movingRect == true)
-             points.Remove(rectToBeMoved);
 
           //checks to see if a rect was found
           if (points.Count > 1 && movingRect != false)
           {
               isMousePress = true;
-              Console.WriteLine("Get ready to move"); 
+              Console.WriteLine("get ready to move"); 
           }
           else
           {
               //if no Control Point is found we must add one
-              if (points.Count <= 6)
+              if (points.Count <= 5)
               {
                   Rectangle rect = new Rectangle
                   {
@@ -241,7 +238,7 @@ namespace Sierpinski_Attractor
                       Height = 10,
                       Fill = controlPointColor
                   };
-
+                  
                   controlPointColor = new SolidColorBrush(Color.FromRgb(redValue, greenValue, blueValue));
                   ControlPoint temp = new ControlPoint(rect, e.GetPosition(myCanvas), controlPointColor);
                   //adds the rect to the list 
@@ -250,6 +247,7 @@ namespace Sierpinski_Attractor
                   Canvas.SetLeft(rect, e.GetPosition(myCanvas).X);
                   Canvas.SetTop(rect, e.GetPosition(myCanvas).Y);
                   myCanvas.Children.Add(rect);
+                  Console.WriteLine("new point"+ points.Count); 
               }
           }
         }
@@ -261,24 +259,29 @@ namespace Sierpinski_Attractor
                 //updates the postition of the rect on the canvas
                 rectToBeMoved.rect.SetValue(Canvas.LeftProperty, e.GetPosition(myCanvas).X);
                 rectToBeMoved.rect.SetValue(Canvas.TopProperty, e.GetPosition(myCanvas).Y);
-                Console.WriteLine("I'm moving");  
+                Console.WriteLine("im moving");  
             }
         }
 
         private void myCanvas_MouseUp(object sender, MouseButtonEventArgs e)
         {
             isMousePress = false;
+            
+            //Console.WriteLine("hey dont move"); 
+            //readds the point that was moved into the points arrray list
+            if (movingRect == true)
+            {
+                //readds the point we removed with the X,Y values
+                Point tempPoint = new Point(Canvas.GetLeft(rectToBeMoved.rect), Canvas.GetTop(rectToBeMoved.rect));
+                ControlPoint temp = new ControlPoint(rectToBeMoved.rect, tempPoint, rectToBeMoved.color);
+                points.Add(temp);
             movingRect = false;
-            Console.WriteLine("Hey, don't move"); 
+            Console.WriteLine("hey dont move"); 
             //checks if we have to redraw
             if (isCanvasPainted == true)
             {
                 //clears the canvas
                 myCanvas.Children.Clear();
-                //readds the point we removed with the X,Y values
-                Point tempPoint = new Point(Canvas.GetLeft(rectToBeMoved.rect),Canvas.GetTop(rectToBeMoved.rect));
-                ControlPoint temp = new ControlPoint(rectToBeMoved.rect, tempPoint, rectToBeMoved.color);
-                points.Add(temp);
                 //readds all the points to the canvas
                 foreach (ControlPoint tempCP in points)
                 {
@@ -286,7 +289,7 @@ namespace Sierpinski_Attractor
                     {
                         Width = 10,
                         Height = 10,
-                        Fill = temp.color
+                        Fill = tempCP.color
                     };
                     //adds the rects to the canvas
                     Canvas.SetLeft(rect, tempCP.point.X);
