@@ -319,12 +319,14 @@ namespace Sierpinski_Attractor
         private void Usage_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult usage = MessageBox.Show(
-                "Select color component values from each combo boxes to create \n"
-                + "a color for a control point. Click on of the three radio buttons to \n"
-                + "select a size for all control points. Right click on the canvas to \n"
+                  "Select color component values from each combo box to create \n"
+                + "a color for a control point. Click on one of the three radio buttons \n"
+                + "to select a size for all control points. Right click on the canvas to \n"
                 + "create three to six control points.  Clicking the Run button will \n"
-                + "create a Sierpinski Attractor.  Drag a control point to change the\n"
-                + "shape.  Clicking the Clear button will clear the canvas and reset\n"
+                + "create a Sierpinski Attractor.  Drag a control point to change the \n"
+                + "shape. Changing the radio button size or right clicking on the canvas \n"
+                + "to add more control points after a shape has been drawn will update \n"
+                + "the shape. Clicking the Clear button will clear the canvas and reset \n"
                 + "attributes to default values.", "Usage");
         }
 
