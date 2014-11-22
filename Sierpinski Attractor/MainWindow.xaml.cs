@@ -239,7 +239,7 @@ namespace Sierpinski_Attractor
           else
           {
               //if no Control Point was found so we must adding one
-              if (points.Count <= 5)
+              if (points.Count < 6)
               {
                   Rectangle rect = new Rectangle
                   {
@@ -255,7 +255,7 @@ namespace Sierpinski_Attractor
                   Canvas.SetLeft(rect, e.GetPosition(myCanvas).X);
                   Canvas.SetTop(rect, e.GetPosition(myCanvas).Y);
                   myCanvas.Children.Add(rect);
-                  Console.WriteLine("new point"); 
+                  Console.WriteLine("new point"+ points.Count); 
               }
           }
         }
@@ -286,10 +286,8 @@ namespace Sierpinski_Attractor
                 movingRect = false;
             }
             //checks if we have to redraw
-            if (isCanvasPainted == true && points.Count < 6)
+            if (isCanvasPainted == true)
             {
-                Point tempPoint = new Point(Canvas.GetLeft(rectToBeMoved.rect), Canvas.GetTop(rectToBeMoved.rect));
-                ControlPoint temp = new ControlPoint(rectToBeMoved.rect, tempPoint, rectToBeMoved.color);
                 //clears the canvas
                 myCanvas.Children.Clear();
                 //readds all the points to the canvas
@@ -299,7 +297,7 @@ namespace Sierpinski_Attractor
                     {
                         Width = 10,
                         Height = 10,
-                        Fill = temp.color
+                        Fill = tempCP.color
                     };
                     //adds the rects to the canvas
                     Canvas.SetLeft(rect, tempCP.point.X);
