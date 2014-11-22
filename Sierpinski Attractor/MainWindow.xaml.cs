@@ -230,6 +230,8 @@ namespace Sierpinski_Attractor
           //checks to see if a rect was found
           if (points.Count > 1 && movingRect != false)
           {
+              //removes the rect so that it can be readded after its moved
+              points.Remove(rectToBeMoved);
               isMousePress = true;
               Console.WriteLine("get ready to move"); 
           }
@@ -273,7 +275,6 @@ namespace Sierpinski_Attractor
         private void myCanvas_MouseUp(object sender, MouseButtonEventArgs e)
         {
             isMousePress = false;
-
             //Console.WriteLine("hey dont move"); 
             //readds the point that was moved into the points arrray list
             if (movingRect == true)
@@ -283,29 +284,29 @@ namespace Sierpinski_Attractor
                 ControlPoint temp = new ControlPoint(rectToBeMoved.rect, tempPoint, rectToBeMoved.color);
                 points.Add(temp);
                 movingRect = false;
-                Console.WriteLine("Hey, don't move");
-                //checks if we have to redraw
-                if (isCanvasPainted == true)
+            }
+            Console.WriteLine("Hey, don't move");
+            //checks if we have to redraw
+            if (isCanvasPainted == true)
+            {
+                //clears the canvas
+                myCanvas.Children.Clear();
+                //readds all the points to the canvas
+                foreach (ControlPoint tempCP in points)
                 {
-                    //clears the canvas
-                    myCanvas.Children.Clear();
-                    //readds all the points to the canvas
-                    foreach (ControlPoint tempCP in points)
+                    Rectangle rect = new Rectangle
                     {
-                        Rectangle rect = new Rectangle
-                        {
-                            Width = 10,
-                            Height = 10,
-                            Fill = tempCP.color
-                        };
-                        //adds the rects to the canvas
-                        Canvas.SetLeft(rect, tempCP.point.X);
-                        Canvas.SetTop(rect, tempCP.point.Y);
-                        myCanvas.Children.Add(rect);
-                    }
-                    //adds 2000 rects
-                    Run_Button_Click(null, null);
+                        Width = 10,
+                        Height = 10,
+                        Fill = tempCP.color
+                    };
+                    //adds the rects to the canvas
+                    Canvas.SetLeft(rect, tempCP.point.X);
+                    Canvas.SetTop(rect, tempCP.point.Y);
+                    myCanvas.Children.Add(rect);
                 }
+                //adds 2000 rects
+                Run_Button_Click(null, null);
             }
         }
 
