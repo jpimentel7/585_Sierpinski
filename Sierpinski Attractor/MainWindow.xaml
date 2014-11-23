@@ -63,7 +63,7 @@
 
                 <StackPanel Width="110" VerticalAlignment="Center">
                     <Rectangle Stroke="LightGray" StrokeThickness="1" x:Name="colorRectangle" Width="80" Height="45" Fill="AliceBlue" Margin="7" />
-                    <Button x:Name="colorButton" Content="Show color" Width="80" Height="25" Click="Get_Color_Click"/>
+                    <Button x:Name="colorButton" Content="View color" Width="80" Height="25" Click="Get_Color_Click"/>
                 </StackPanel>
 
                 <StackPanel Width="160" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -74,7 +74,7 @@
                 </StackPanel>
 
                 <StackPanel Width="145" VerticalAlignment="Center" >
-                    <Button Content="Run" HorizontalAlignment="Center"  Width="80" Height="25" Margin="10" Click="Run_Button_Click"/>
+                    <Button Content="Run" HorizontalAlignment="Center" Width="80" Height="25" Margin="10" Click="Run_Button_Click"/>
                     <Button Content="Clear" HorizontalAlignment="Center" Width="80" Height="25" Click="Clear_Button_Click"/>
                 </StackPanel>
 
