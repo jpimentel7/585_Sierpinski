@@ -242,6 +242,9 @@ namespace Sierpinski_Attractor
                 Canvas.SetTop(rect, e.GetPosition(myCanvas).Y);
                 myCanvas.Children.Add(rect);
             }
+            //repaints all the points
+            if (isCanvasPainted == true)
+                redrawCanvas();
         }
 
         //looks for a rect to move 
@@ -293,25 +296,30 @@ namespace Sierpinski_Attractor
             //checks if we have to redraw
             if (isCanvasPainted == true)
             {
-                //clears the canvas
-                myCanvas.Children.Clear();
-                //readds all the points to the canvas
-                foreach (ControlPoint tempCP in points)
+                redrawCanvas();
+            } 
+        }
+        private void redrawCanvas()
+        {
+            //clears the canvas
+            myCanvas.Children.Clear();
+            //readds all the points to the canvas
+            foreach (ControlPoint tempCP in points)
+            {
+                Rectangle rect = new Rectangle
                 {
-                    Rectangle rect = new Rectangle
-                    {
-                        Width = 10,
-                        Height = 10,
-                        Fill = tempCP.color
-                    };
-                    //adds the rects to the canvas
-                    Canvas.SetLeft(rect, tempCP.point.X);
-                    Canvas.SetTop(rect, tempCP.point.Y);
-                    myCanvas.Children.Add(rect);
-                }
-                //adds 2000 rects
-                Run_Button_Click(null, null);
-            }
+                    Width = 10,
+                    Height = 10,
+                    Fill = tempCP.color
+                 };
+                //adds the rects to the canvas
+                Canvas.SetLeft(rect, tempCP.point.X);
+                Canvas.SetTop(rect, tempCP.point.Y);
+                myCanvas.Children.Add(rect);
+             }
+             //adds 2000 rects
+             Run_Button_Click(null, null);
+            
         }
 
         //about menu item click handler
