@@ -45,7 +45,7 @@ namespace Sierpinski_Attractor
          //holds the blue value from the combo box
          byte blueValue = 0;
         // used for the drag feature
-         bool isMousePress = false;
+         bool isMousePress = false; 
         //used to move object
          ControlPoint rectToBeMoved;
          bool movingRect = false;
@@ -235,19 +235,21 @@ namespace Sierpinski_Attractor
           }
           else
           {
+              Console.WriteLine("look at me " + movingRect + " " + isCanvasPainted);
               //if no Control Point is found we must add one
+              SolidColorBrush tempColor = new SolidColorBrush(Color.FromRgb(redValue,greenValue,blueValue));
               if (points.Count <= 5)
               {
                   Rectangle rect = new Rectangle
                   {
                       Width = 10,
                       Height = 10,
-                      Fill = controlPointColor
+                      Fill = tempColor
                   };
                   
                   //change control point color to rgb value color
                   controlPointColor.Color = Color.FromRgb(redValue, greenValue, blueValue);
-                  ControlPoint temp = new ControlPoint(rect, e.GetPosition(myCanvas), controlPointColor);
+                  ControlPoint temp = new ControlPoint(rect, e.GetPosition(myCanvas), tempColor);
                   //adds the rect to the list 
                   points.Add(temp);
                   //adds the rect to the canvas
@@ -280,7 +282,6 @@ namespace Sierpinski_Attractor
                 ControlPoint temp = new ControlPoint(rectToBeMoved.rect, tempPoint, rectToBeMoved.color);
                 points.Add(temp);      
             }
-            Console.WriteLine("Hey, don't move");
             //checks if we have to redraw
             if (isCanvasPainted == true)
             {
