@@ -209,7 +209,7 @@ namespace Sierpinski_Attractor
         }
 
         //handles clicks on the canvas
-        private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
+        private void myCanvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
             foreach (ControlPoint temp in points)
             {
