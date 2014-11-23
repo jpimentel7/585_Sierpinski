@@ -233,13 +233,11 @@ namespace Sierpinski_Attractor
           }
           else
           {
-<<<<<<< HEAD
               Console.WriteLine("look at me " + movingRect + " " + isCanvasPainted);
-=======
+
               //change control point color to rgb value color
               SolidColorBrush controlPointColor = new SolidColorBrush(Color.FromRgb(redValue, greenValue, blueValue));
 
->>>>>>> 0505999d50102abb3d098f1a95cf8d4214e72cfd
               //if no Control Point is found we must add one
               SolidColorBrush tempColor = new SolidColorBrush(Color.FromRgb(redValue,greenValue,blueValue));
               if (points.Count <= 5)
@@ -251,13 +249,10 @@ namespace Sierpinski_Attractor
                       Fill = tempColor
                   };
                   
-<<<<<<< HEAD
+
                   //change control point color to rgb value color
                   controlPointColor.Color = Color.FromRgb(redValue, greenValue, blueValue);
                   ControlPoint temp = new ControlPoint(rect, e.GetPosition(myCanvas), tempColor);
-=======
-                  ControlPoint temp = new ControlPoint(rect, e.GetPosition(myCanvas), controlPointColor);
->>>>>>> 0505999d50102abb3d098f1a95cf8d4214e72cfd
                   //adds the rect to the list 
                   points.Add(temp);
                   //adds the rect to the canvas
