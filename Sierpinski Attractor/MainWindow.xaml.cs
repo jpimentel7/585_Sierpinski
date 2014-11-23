@@ -164,33 +164,40 @@ namespace Sierpinski_Attractor
         //run button
         private void Run_Button_Click(object sender, RoutedEventArgs e)
         {
-            //need to check that we have more than 3 control points selected
-            Random rand = new Random();
-            ControlPoint temp;
-            Point last, next;
-            last = points[rand.Next(points.Count)].point;
-            for (int i = 0; i < 2000; i++)
+            //need to check that we have at least 3 control points selected
+            if (points.Count < 3)
             {
-                //random control point
-                temp = points[rand.Next(points.Count)];
-                next = temp.point;
-                last = new Point((next.X + last.X) / 2, (next.Y + last.Y) / 2);
-                //adds the new rect
-                Rectangle rect = new Rectangle
-                {
-                    //size is controlled by the radio buttons 
-                    Width = size,
-                    Height = size,
-                    //get the color from the random control point
-                    Fill = temp.color
-                };
-                //adds the rect to the canvas
-                Canvas.SetLeft(rect, last.X);
-                Canvas.SetTop(rect, last.Y);
-                myCanvas.Children.Add(rect);
+                MessageBoxResult author = MessageBox.Show("Please create at least three control points.");
             }
-            //used to determine if the canvas has been painted on
-            isCanvasPainted = true;
+            else
+            {
+                Random rand = new Random();
+                ControlPoint temp;
+                Point last, next;
+                last = points[rand.Next(points.Count)].point;
+                for (int i = 0; i < 2000; i++)
+                {
+                    //random control point
+                    temp = points[rand.Next(points.Count)];
+                    next = temp.point;
+                    last = new Point((next.X + last.X) / 2, (next.Y + last.Y) / 2);
+                    //adds the new rect
+                    Rectangle rect = new Rectangle
+                    {
+                        //size is controlled by the radio buttons 
+                        Width = size,
+                        Height = size,
+                        //get the color from the random control point
+                        Fill = temp.color
+                    };
+                    //adds the rect to the canvas
+                    Canvas.SetLeft(rect, last.X);
+                    Canvas.SetTop(rect, last.Y);
+                    myCanvas.Children.Add(rect);
+                }
+                //used to determine if the canvas has been painted on
+                isCanvasPainted = true;
+            }
         }
 
         //clear button
@@ -217,7 +224,7 @@ namespace Sierpinski_Attractor
 
             //if no Control Point is found we must add one
             SolidColorBrush tempColor = new SolidColorBrush(Color.FromRgb(redValue, greenValue, blueValue));
-            if (points.Count <= 5)
+            if (points.Count < 6)
             {
                 Rectangle rect = new Rectangle
                 {
