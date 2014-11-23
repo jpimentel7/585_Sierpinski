@@ -207,6 +207,7 @@ namespace Sierpinski_Attractor
             greenComboBox.SelectedIndex = 0;
             blueComboBox.SelectedIndex = 0;
         }
+
         private void myCanvas_Right_MouseUp(object sender, MouseButtonEventArgs e)
         {
             Console.WriteLine("look at me " + movingRect + " " + isCanvasPainted);
@@ -235,6 +236,7 @@ namespace Sierpinski_Attractor
                 myCanvas.Children.Add(rect);
             }
         }
+
         //looks for a rect to move 
         private void myCanvas_Left_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -258,6 +260,7 @@ namespace Sierpinski_Attractor
                 isMousePress = true;
             }
         }
+
         private void myCanvas_MouseMove(object sender, MouseEventArgs e)
         {
             if (movingRect != false && isMousePress)
@@ -267,7 +270,7 @@ namespace Sierpinski_Attractor
                 rectToBeMoved.rect.SetValue(Canvas.TopProperty, e.GetPosition(myCanvas).Y);
             }
         }
-        //
+        
         private void myCanvas_Left_MouseUp(object sender, MouseButtonEventArgs e)
         {
             isMousePress = false;
@@ -303,14 +306,15 @@ namespace Sierpinski_Attractor
                 Run_Button_Click(null, null);
             }
         }
-        //About menu item click handler
+
+        //about menu item click handler
         private void About_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult author = MessageBox.Show(
                 "Sierpinski Attractor \n\n"
                 + "Javier Pimentel \njavier.pimentel.791@my.csun.edu\n\n"
                 + "Uyen Nguyen \nuyen.nguyen.630@my.csun.edu\n\n"
-                + "California State University, Northridge \nComp 585 \nBarnes \nFall 14",
+                + "California State University, Northridge \nComp 585 Barnes\n Fall 2014",
                 "About");
         }
 
@@ -319,15 +323,15 @@ namespace Sierpinski_Attractor
         {
             MessageBoxResult usage = MessageBox.Show(
                 "Select color component values from each combo box to create \n"
-                + "a color for a control point. Click on the get color button to \n"
+                + "a color for a control point. Click on the View color button to \n"
                 + "view the color created. Click on one of the three radio buttons \n"
-                + "to select a size for all control points. Right click on the canvas \n"
-                + "to create three to six control points.  Clicking the Run button will \n"
+                + "to select a size for all control points. Right click on the canvas to \n"
+                + "create three to six control points.  Clicking the Run button will \n"
                 + "create a Sierpinski Attractor.  Drag a control point to change the \n"
-                + "shape. Changing the radio button size or right clicking on the canvas \n"
-                + "to add more control points after a shape has been drawn will update \n"
-                + "the shape. Clicking the Clear button will clear the canvas and reset \n"
-                + "attributes to default values.", "Usage");
+                + "shape using left mouse click. Changing the radio button size or \n"
+                + "adding more control points after a shape has been drawn will \n"
+                + "update the shape. Clicking the Clear button will clear the canvas \n"
+                + "and reset attributes to default values.", "Usage");
         }
 
         //change rectangle color to selected rgb values
