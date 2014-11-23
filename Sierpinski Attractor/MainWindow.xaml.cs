@@ -36,8 +36,6 @@ namespace Sierpinski_Attractor
     {
         //holds the value from the radio box
          int size = 0;
-        //holds the value for color 
-         SolidColorBrush controlPointColor = new SolidColorBrush(Color.FromRgb(0, 0, 0));
          //holds the red value from the combo box
          byte redValue = 0;
          //holds the green value from the combo box
@@ -211,7 +209,7 @@ namespace Sierpinski_Attractor
         }
 
         //handles clicks on the canvas
-        private void Canvas_MouseDown(object sender, MouseButtonEventArgs e)
+        private void myCanvas_MouseDown(object sender, MouseButtonEventArgs e)
         {
             foreach (ControlPoint temp in points)
             {
@@ -235,7 +233,13 @@ namespace Sierpinski_Attractor
           }
           else
           {
+<<<<<<< HEAD
               Console.WriteLine("look at me " + movingRect + " " + isCanvasPainted);
+=======
+              //change control point color to rgb value color
+              SolidColorBrush controlPointColor = new SolidColorBrush(Color.FromRgb(redValue, greenValue, blueValue));
+
+>>>>>>> 0505999d50102abb3d098f1a95cf8d4214e72cfd
               //if no Control Point is found we must add one
               SolidColorBrush tempColor = new SolidColorBrush(Color.FromRgb(redValue,greenValue,blueValue));
               if (points.Count <= 5)
@@ -247,9 +251,13 @@ namespace Sierpinski_Attractor
                       Fill = tempColor
                   };
                   
+<<<<<<< HEAD
                   //change control point color to rgb value color
                   controlPointColor.Color = Color.FromRgb(redValue, greenValue, blueValue);
                   ControlPoint temp = new ControlPoint(rect, e.GetPosition(myCanvas), tempColor);
+=======
+                  ControlPoint temp = new ControlPoint(rect, e.GetPosition(myCanvas), controlPointColor);
+>>>>>>> 0505999d50102abb3d098f1a95cf8d4214e72cfd
                   //adds the rect to the list 
                   points.Add(temp);
                   //adds the rect to the canvas
@@ -321,12 +329,16 @@ namespace Sierpinski_Attractor
         private void Usage_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult usage = MessageBox.Show(
-                "Select color component RGB values from each combo boxes to create\n"
-                + "a color and select size from one of the three radio buttons for the\n"
-                + "control point attributes. Click on the canvas to create three to six\n"
-                + "control points. Clicking the Run button will create a Sierpinski\n"
-                + "Attractor.  Drag a control point to change the shape.  Clicking the\n"
-                + "Clear button will clear the canvas and resetto default values.", "Usage");
+                "Select color component values from each combo box to create \n"
+                + "a color for a control point. Click on the get color button to \n"  
+                + "view the color created. Click on one of the three radio buttons \n"
+                + "to select a size for all control points. Right click on the canvas \n"
+                + "to create three to six control points.  Clicking the Run button will \n"
+                + "create a Sierpinski Attractor.  Drag a control point to change the \n"
+                + "shape. Changing the radio button size or right clicking on the canvas \n"
+                + "to add more control points after a shape has been drawn will update \n"
+                + "the shape. Clicking the Clear button will clear the canvas and reset \n"
+                + "attributes to default values.", "Usage");
         }
 
         //change rectangle color to selected rgb values
