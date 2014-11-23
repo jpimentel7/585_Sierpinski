@@ -8,7 +8,7 @@
             <MenuItem Header="_Usage" Click="Usage_Click"></MenuItem>
         </Menu>
 
-        <Canvas x:Name="myCanvas" ToolTip="Use the right mouse button" Height="500" Width="680" Background="AliceBlue" MouseRightButtonUp="myCanvas_MouseUp"  MouseRightButtonDown="myCanvas_MouseDown" MouseMove="myCanvas_MouseMove"/>
+        <Canvas x:Name="myCanvas" ToolTip="Use the right mouse button" Height="500" Width="680" Background="AliceBlue" MouseRightButtonUp="myCanvas_Right_MouseUp" MouseLeftButtonDown="myCanvas_Left_MouseDown" MouseLeftButtonUp="myCanvas_Left_MouseUp" MouseMove="myCanvas_MouseMove"/>
 
         <Border BorderBrush="LightGray" BorderThickness="1" >
             <StackPanel HorizontalAlignment="Center" Background="PapayaWhip" Width="680" Orientation="Horizontal" VerticalAlignment="Bottom" Height="114">
