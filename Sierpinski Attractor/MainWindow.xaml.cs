@@ -329,7 +329,7 @@ namespace Sierpinski_Attractor
                 "Sierpinski Attractor \n\n"
                 + "Javier Pimentel \njavier.pimentel.791@my.csun.edu\n\n"
                 + "Uyen Nguyen \nuyen.nguyen.630@my.csun.edu\n\n"
-                + "California State University, Northridge \nComp 585 Barnes\n Fall 2014",
+                + "California State University, Northridge \nComp 585 Barnes\nFall 2014",
                 "About");
         }
 
@@ -337,16 +337,15 @@ namespace Sierpinski_Attractor
         private void Usage_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult usage = MessageBox.Show(
-                "Select color component values from each combo box to create \n"
-                + "a color for a control point. Click on the View color button to \n"
-                + "view the color created. Click on one of the three radio buttons \n"
-                + "to select a size for all control points. Right click on the canvas to \n"
-                + "create three to six control points.  Clicking the Run button will \n"
-                + "create a Sierpinski Attractor.  Drag a control point to change the \n"
-                + "shape using left mouse click. Changing the radio button size or \n"
-                + "adding more control points after a shape has been drawn will \n"
-                + "update the shape. Clicking the Clear button will clear the canvas \n"
-                + "and reset attributes to default values.", "Usage");
+                "\u2022 Select RGB color values from the combo boxes for a color.\n"
+                + "\u2022 Click the View color button to see the color created.\n"
+                + "\u2022 The color can be changed for each new control point.\n"
+                + "\u2022 Choose one of the three radio buttons to select a size.\n"
+                + "\u2022 Right click on the canvas to create 3 to 6 control points.\n"
+                + "\u2022 Click the Run button to create the Sierpinski Attractor.\n"
+                + "\u2022 Drag a control point to change the shape with left click.\n"
+                + "\u2022 Adding more control points will update the shape after a run.\n", 
+                "Usage");
         }
 
         //change rectangle color to selected rgb values
